@@ -18,7 +18,7 @@ function inPlaceMerge(array, left, mid, right) {
     let i = left;
     let j = mid + 1;
 
-    // Shifting smaller element from right subarray into correct position in left subarray
+    // Shifting smaller element from right subarray into correct position in left subarray.
     while (i <= mid && j <= right) {
         if (array[i] <= array[j]) {
             i++;
