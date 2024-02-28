@@ -26,8 +26,8 @@ markdown file.
 
 **Adding Everything Together**:
 - We have $log n$ steps from doubling the size of the subarrays we're merging.
-- In each step, we're doing work that involves going through the whole array ($n$ work) and merging the subarrays (up to $n$ work in worst-case).
-- When we multiply these together ($n$ work for each $log n$ steps), the total time the algorithm takes is $n log n$
+- In each step, we're doing work that involves going through the entire array ($n$ work) to merge the subarrays. Although merging might seem to add additional work, it's important for us to understand that the total work for merging across all pieces in one step sums up to $n$. This is because, despite the potential for every item to move during a merge, each item is essentially being considered once per merge step across the whole array.
+- Therefore, the work in each step is proportional to the size of the array, $n$, and since there are $\log n$ such steps, the total time complexity of the algorithm is $n \log n$.
 
 **Conclusion**:
-In the worst case scenario, the algorithm's time complexity is $Θ(n log n)$
+In the worst case scenario, the iterative mergesort algorithm has a worst-case runtime complexity of $\Theta(n \log n)$. This indiciates that the algorithm's growth rate is tightly bound by $n \log n$ in the worst case. This would be consistent with the fundamental behavior of merge sort, where the combination of dividing the array and merging results in a logarithmic number of levels of work, each requiring linear time to merge the subarrays.
