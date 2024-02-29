@@ -29,5 +29,15 @@ markdown file.
 - In each step, we're doing work that involves going through the entire array ($n$ work) to merge the subarrays. Although merging might seem to add additional work, it's important for us to understand that the total work for merging across all pieces in one step sums up to $n$. This is because, despite the potential for every item to move during a merge, each item is essentially being considered once per merge step across the whole array.
 - Therefore, the work in each step is proportional to the size of the array, $n$, and since there are $\log n$ such steps, the total time complexity of the algorithm is $n \log n$.
 
+**Recursive & Iterative Mergesort Complexity**:
+  The time complexity of both iterative and the traditional recursive mergesort algorithms is $\Theta(n \log n)$ for the worst-case scenario. Here's why the complexity remains the same and how the additional work is accounted for:
+  - Breaking Down the Array: Both recursive and iterative mergesort split the array and then combine it back, aiming to sort smaller sections first. The process essentially remains the same in both methods.
+
+  - Merging Work: Every number in the array is merged $\log n$ times, whether we use recursion or loops. That's why the time needed is the same, $n \log n$.
+
+  - Extra Work: Even though keeping track of array parts in the iterative method seems like more work, it doesn't change the overall time needed to sort.
+  
+  To summarize, even though the iterative way of doing mergesort might look different, it ends up taking the same amount of time to sort the array, $n \log n$, which is what we expect from mergesort. This is because the core steps of        splitting the array and merging it back together, which determine how long it takes, don't change.
+
 **Conclusion**:
 In the worst case scenario, the iterative mergesort algorithm has a worst-case runtime complexity of $\Theta(n \log n)$. This indiciates that the algorithm's growth rate is tightly bound by $n \log n$ in the worst case. This would be consistent with the fundamental behavior of merge sort, where the combination of dividing the array and merging results in a logarithmic number of levels of work, each requiring linear time to merge the subarrays.
