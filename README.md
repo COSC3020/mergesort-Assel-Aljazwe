@@ -34,8 +34,12 @@ markdown file.
   - Breaking Down the Array: Both recursive and iterative mergesort split the array and then combine it back, aiming to sort smaller sections first. The process essentially remains the same in both methods.
 
   - Merging Work: Every number in the array is merged $\log n$ times, whether we use recursion or loops. That's why the time needed is the same, $n \log n$.
-
-  - Extra Work: Even though keeping track of array parts in the iterative method seems like more work, it doesn't change the overall time needed to sort.
+    
+**Why In-Place Iterative Mergesort is Still $\Theta(n \log n)$**:
+  - **In-Place**: Sorting "in-place" involves rearranging elements within the original array itself, using some extra steps to keep track of position but not using any extra space. These steps are quick and don't add any significant time compared to the overall sorting process.
+  - **The Core Process**: The key to mergesort is merging elements, which dictates its time complexity. This involves looking at each element and combining them in order, which is done $n \log n$ times as we double the size of what we're merging each round. The time spent on the in-place operations are minor in comparison to the total time of combining elements.
+  - **Complexity Remaining the Same**: The extra steps for in-place sorting don't affect the overall complexity because they involve simple index adjustments and element swaps. Mergesort's time to sort grows based on how many elements there are ($n$) and how many rounds of merging we do ($\log n$), making it $n \log n$. The extra in-place steps are too small to change the growth rate. 
+  - **Extra Work**: Even though keeping track of array parts in the iterative method seems like more work, it doesn't change the overall time needed to sort.
   
   To summarize, even though the iterative way of doing mergesort might look different, it ends up taking the same amount of time to sort the array, $n \log n$, which is what we expect from mergesort. This is because the core steps of        splitting the array and merging it back together, which determine how long it takes, don't change.
 
