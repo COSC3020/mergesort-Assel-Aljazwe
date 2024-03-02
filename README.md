@@ -17,31 +17,25 @@ its worst-case runtime. Add your answer, including your reasoning, to this
 markdown file.
 
 ### Analysis:
+Iterative In-Place MergeSort efficiently organizes an array by merging smaller parts into larger, sorted segments without needing extra space. Here's how it works specifically:
 
-**Doubling Subarray Size**: The algorithm starts with small subarrays of size one and doubles their size every step until it covers the whole array. This doubling occurs $log n$ times, where $n$ is the total number of items in the array. So for this part, the time it takes is $log n$.
+**The Phases of Iterative In-Place MergeSort**:
+- **Subarray Doubling**: Starting with subarrays of size one, the algorithm doubles their size with each iteration until the entire array is sorted. This doubling process occurs $logn$ times, showing the algorithm's depth of merging.
 
-**Going Through the Array**: In every single doubling step, the algorithm goes through the whole array to merge the subarrays. This means we're passing through the whole array, which takes us $n$ time. 
+- **In-Place Merging**: Unlike traditional MergeSort that uses additional arrays for merging, this version performs the merge directly within the original array. It involves shifting elements to fit the right subarray items into the correct positions in the left subarray, all while maintaining the order.
 
-**Merging the Subarrays**: When merging two subarrays, in the worst case, every item might need to move to get the subarrays merged correctly. Moving items around takes time, and in the worst case scenario, this could also take up to $n$ time for each merge.
+- **Element Shifting**: The key operation in in-place merging is shifting elements, which allows for merging without extra space. While this process adds steps to each merge, it's efficiently managed within the algorithm's overall workflow.
 
-**Adding Everything Together**:
-- We have $log n$ steps from doubling the size of the subarrays we're merging.
-- In each step, we're doing work that involves going through the entire array ($n$ work) to merge the subarrays. Although merging might seem to add additional work, it's important for us to understand that the total work for merging across all pieces in one step sums up to $n$. This is because, despite the potential for every item to move during a merge, each item is essentially being considered once per merge step across the whole array.
-- Therefore, the work in each step is proportional to the size of the array, $n$, and since there are $\log n$ such steps, the total time complexity of the algorithm is $n \log n$.
+**Overall Complexity**:
+The shifting of elements, needed to merge without extra arrays, introduces more steps. In some cases, especially when the array is not well-ordered, this shifting can make the algorithm work harder, pushing the complexity up to $Θ(n^2)$ in worst-case scenarios.
 
-**Recursive & Iterative Mergesort Complexity**:
-  The time complexity of both iterative and the traditional recursive mergesort algorithms is $\Theta(n \log n)$ for the worst-case scenario. Here's why the complexity remains the same and how the additional work is accounted for:
-  - Breaking Down the Array: Both recursive and iterative mergesort split the array and then combine it back, aiming to sort smaller sections first. The process essentially remains the same in both methods.
-
-  - Merging Work: Every number in the array is merged $\log n$ times, whether we use recursion or loops. That's why the time needed is the same, $n \log n$.
-    
-**Why In-Place Iterative Mergesort is Still $\Theta(n \log n)$**:
-  - **In-Place**: Sorting "in-place" involves rearranging elements within the original array itself, using some extra steps to keep track of position but not using any extra space. These steps are quick and don't add any significant time compared to the overall sorting process.
-  - **The Core Process**: The key to mergesort is merging elements, which dictates its time complexity. This involves looking at each element and combining them in order, which is done $n \log n$ times as we double the size of what we're merging each round. The time spent on the in-place operations are minor in comparison to the total time of combining elements.
-  - **Complexity Remaining the Same**: The extra steps for in-place sorting don't affect the overall complexity because they involve simple index adjustments and element swaps. Mergesort's time to sort grows based on how many elements there are ($n$) and how many rounds of merging we do ($\log n$), making it $n \log n$. The extra in-place steps are too small to change the growth rate. 
-  - **Element Shifting Impact**: When we merge subarrays in place, we sometimes have to shift elements to get everything sorted correctly. This involves moving elements around to make space for an item from the right subarray to fit into its new spot in the left subarray. While this extra step of element shifting might look like it adds more work, the overall time complexity of MergeSort doesn't change from $\Theta(n \log n)$. These additional shifts and operations during merging are already considered in the total work the algorithm does across all levels of merging. When the algorithm merges pieces together (happens log n times), the work for these shifts included in the overall job it has to do. So, the algorithm's performance already takes these steps into account, ensuring it stays efficient and within its planned complexity. 
-  
-  To summarize, even though the iterative way of doing mergesort might look different, it ends up taking the same amount of time to sort the array, $n \log n$, which is what we expect from mergesort. This is because the core steps of        splitting the array and merging it back together, which determine how long it takes, don't change.
+- Complexity Analysis: Given the in-depth shifting required for in-place merging, the worst-case complexity of iterative in-place MergeSort could reach $Θ(n^2)$ in specific scenarios where the data requires a lot of rearranging to sort the array.
 
 **Conclusion**:
-In the worst case scenario, the iterative mergesort algorithm has a worst-case runtime complexity of $\Theta(n \log n)$. This indiciates that the algorithm's growth rate is tightly bound by $n \log n$ in the worst case. This would be consistent with the fundamental behavior of merge sort, where the combination of dividing the array and merging results in a logarithmic number of levels of work, each requiring linear time to merge the subarrays.
+Normally, Mergesort operates with a $Θ(n log n)$ complexity, but when implementing in-place, element shifting can push the complexity up to $Θ(n^2)$ in some cases due to the extra steps needed.
+The iterative in-place MergeSort aims to save space by sorting directly in the original array, but this approach comes with its own challenges. Looking at how elements are shifted to merge subarrays shows us that, in some worst-case situations, the algorithm might need to do a lot more work than expected.
+
+
+
+
+
