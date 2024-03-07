@@ -23,6 +23,14 @@ The Iterative In-Place MergeSort algorithm is designed to sort an array by itera
 - **Subarray Expansion**: The algorithm begins with subarrays of size 1 and doubles their size with each iteration, affecting the entire array. This process, occurs $log n$ times, which reflects the logarithmic depth of merging operations characteristic of MergeSort.
 - **In-Place Merging Mechanism**: Differing from the traditional Mergesort, which uses extra storage arrays, this variant merges subarrays directly within the original array. This approach requires shifting elements to correctly position items from one subarray to another, maintaing sorted order without extra space.
 - **Element Shifting Impact**: The pivotal operation in in-place merging is the shifting of elements. Each time an element from the right subarray needs to be inserted ahead of elements in the left, all intervening elements are shifted one position to the right. While efficient in space, this method introduces additional steps for every insertion, as elements are moved sequentially.
+  
+  1. **Complexity for Each Insertion**: When inserting an element from the right subarray into the left, shifitng all elements in between to the right has a complexity of $O(k)$ for each insertion, with $k$ representing the number of elements shifted.
+  
+  2. **Total Complexity for a Merge**: Considering a merge operation where multiple elements from the right subarray need to be sequentially inserted into the left subarray, the complexity can quickly escalate. In the worst case, every insertion requires shifting nearly all elements of the merged subarray, the complexity of completing all insertions for that merge operation reaches $O(n^2)$, where $n$ is the total number of elements in the subarray being merged.
+
+  3.  **Overall Complexity**: The $O(n^2)$ complexity per merge operation significantly affects the overall complexity of iterative in-place MergeSort. Given that the merge process occurs over $logn$ levels (due to doubling subarray sizes), the total worst-case complexity for all merge operations across these levels becomes $Θ(n^2\ logn)$.
+
+    In summary, the complexity of the element shifting step itself is directly responsible for the increased worst-case complexity of the iterative in-place MergeSort, because we shift so many elements often in in-place merges, the whole sorting process can get as complex as $Θ(n^2\ logn)$ when the array is difficult to sort.
 
 ### **Worst-Case Complexity Analysis**:
 - In certain scenarios, particularly those with poorly ordered array,s the frequency and extent of shifting can significantly increase the operational workload. For each insertion from the right subarray into the left, many elements are potentially shifted, resulting in a growing number of operations needed.
